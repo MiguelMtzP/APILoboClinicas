@@ -10,8 +10,10 @@ api.post('/login',ProfesorController.login);
 api.post('/singin',ProfesorController.singin);
 api.get('/getcursos',middlewareAuth.authenticate('jwt', { session: false }),ProfesorController.getcursos);
 api.get('/getAlumnos/:idCurso',middlewareAuth.authenticate('jwt', { session: false }),ProfesorController.getAlumnos);
+api.get('/getInscripcionAlumno/:idCurso/:idAlumno',middlewareAuth.authenticate('jwt', { session: false }),ProfesorController.getInscripcion);
 api.get('/getcurso/:id',middlewareAuth.authenticate('jwt', { session: false }),ProfesorController.getCurso);
-api.get('/getconsultas-pendientes/:idAlumno/:idCurso',middlewareAuth.authenticate('jwt', { session: false }),ProfesorController.getConsultasPendientes);
+api.get('/getconsultas-Realizadas-Curso/:idAlumno/:idCurso',middlewareAuth.authenticate('jwt', { session: false }),ProfesorController.getconsultasRealizadasCurso);
+api.put('/valida-tratamiento/:idConsulta/:idTratamiento',middlewareAuth.authenticate('jwt', { session: false }),ProfesorController.validaTratamiento);
 api.post('/crearCurso',middlewareAuth.authenticate('jwt', { session: false }),ProfesorController.saveCurso);
 //api.get('/getprofes',ProfesorController.getprofes);
 

@@ -3,6 +3,7 @@
 var jwt = require('jsonwebtoken');
 var config= require('../config');
 var path= require ('path');
+const mongoose = require('mongoose');
 
 var Curso= require('../models/curso');
 var Alumno= require('../models/alumno');
@@ -206,6 +207,27 @@ function getCurso(req,res) {
     }
   });
 }
+function getInscripcion(req,res ) {
+  let idCurso= req.params.idCurso;
+  let idAlumno= req.params.idAlumno;
+  CursoAlumno.findOne({id_curso:idCurso,id_alumno:idAlumno},(err,inscripcion)=>{
+    if (err) {
+      res.status(500).send({msj:"error en el servidor"});
+    } else {
+
+      Alumno.populate(inscripcion,{path:"id_alumno", select:["nombre","apellidos","correo","matricula"]},(err,inscripcionPopulate)=>{
+        if (err) {
+          res.status(500).send({msj:"error en el servidor"});
+
+        } else {
+          res.status(200).send({inscripcion:inscripcionPopulate});
+        }
+      });
+    }
+  })
+
+
+}
 function saveCurso(req,res) {
   var curso= new Curso();
   var parametros= req.body;
@@ -222,7 +244,7 @@ function saveCurso(req,res) {
     }
   });
 }
-function getConsultasPendientes(req,res){
+function getconsultasRealizadasCurso(req,res){
   var alumno=req.params.idAlumno;
   var curso=req.params.idCurso;
   CursoAlumno.find({id_curso:curso,id_alumno:alumno},(err,inscripcion)=>{
@@ -251,10 +273,7 @@ function getConsultasPendientes(req,res){
           {
               $unwind:"$tratamientos"
           },
-          {$match:
-              {
-                  "tratamientos.valido":false
-              }
+          {$sort:{"fecha":1, "tratamientos.nombre":1}
           }
           /*
           */
@@ -269,6 +288,56 @@ function getConsultasPendientes(req,res){
     }
   });
 }
+
+
+function validaTratamiento(req,res){
+
+  let idConsulta = req.params.idConsulta;
+  let idTratamiento=req.params.idTratamiento;
+
+  Consulta.findOneAndUpdate({_id:idConsulta,"tratamientos._id":idTratamiento},{$set:{"tratamientos.$.valido":true}},
+    (err,result)=>{
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      }else {
+        Consulta.aggregate([{
+          $match:{
+            "_id":mongoose.Types.ObjectId(idConsulta)
+          }
+        },{
+          $unwind:"$tratamientos"
+        },{
+          $match:{
+            "tratamientos._id":mongoose.Types.ObjectId(idTratamiento)
+          }
+        }],(err,res_aggregate)=>{
+          if (err) {
+            console.log(err);
+            res.status(500).send(err);
+          }else {
+            console.log(res_aggregate);
+            if (res_aggregate.length) {
+              CursoAlumno.findOneAndUpdate({_id:mongoose.Types.ObjectId(res_aggregate[0].id_cursoAlumno),"tratamientos.id_tratamiento":res_aggregate[0].tratamientos.id_tratamiento},
+              {$inc:{"tratamientos.$.cantidad":-1}},(err,final)=>{
+                if (err) {
+                  console.log(err);
+                  res.status(500).send(err);
+                }else {
+                  res.status(200).send({hecho:final});
+                }
+              });
+            }else {
+              res.status(403).send({"msj":"not founded"});
+
+            }
+          }
+        });
+      }
+
+    });
+
+}
 module.exports={
   getprofes,getclinicas,gettratamientos,setclinica,settratamiento,
   login,
@@ -276,6 +345,8 @@ module.exports={
   getcursos,
   getCurso,
   saveCurso,
-  getConsultasPendientes,
+  getInscripcion,
+  validaTratamiento,
+  getconsultasRealizadasCurso,
   getAlumnos
 };

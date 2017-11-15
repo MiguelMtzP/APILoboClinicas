@@ -7,7 +7,7 @@
     id_alumno:String,
     tratamientos:[{
       id_tratamiento: String,
-      cantidad:String
+      cantidad:Number
     }]
   });
   module.exports= mongoose.model('CursoAlumno',cursoAlumnoSchema);

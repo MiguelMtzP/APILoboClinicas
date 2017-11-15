@@ -1,0 +1,26 @@
+{"_id":{"$oid":"59f66cd91df5971c13dad71e"},"nombre":"exodoncia","__v":0}
+{"_id":{"$oid":"59f66ced1df5971c13dad71f"},"nombre":"amalgama","__v":0}
+{"_id":{"$oid":"59f69a021df5971c13dad722"},"nombre":"Profilaxis","__v":0}
+{"_id":{"$oid":"59f69a501df5971c13dad723"},"nombre":"Aplicación Tópica de Fluoruro","__v":0}
+{"_id":{"$oid":"59f69a621df5971c13dad724"},"nombre":"Aplicación de Selladores","__v":0}
+{"_id":{"$oid":"59f69a7b1df5971c13dad725"},"nombre":"Preparación de cavidades clase I","__v":0}
+{"_id":{"$oid":"59f69a831df5971c13dad726"},"nombre":"Preparación de cavidades clase III","__v":0}
+{"_id":{"$oid":"59f69a8b1df5971c13dad727"},"nombre":"Preparación de cavidades clase V","__v":0}
+{"_id":{"$oid":"59f69aef1df5971c13dad728"},"nombre":"Pulpotomia","__v":0}
+{"_id":{"$oid":"59f69af71df5971c13dad729"},"nombre":"Pulpectomia","__v":0}
+{"_id":{"$oid":"59f69b131df5971c13dad72a"},"nombre":"Extracción","__v":0}
+{"_id":{"$oid":"59f69b591df5971c13dad72b"},"nombre":"Mantenedor de espacio","__v":0}
+{"_id":{"$oid":"59f69b671df5971c13dad72c"},"nombre":"Incrustación","__v":0}
+{"_id":{"$oid":"59f69b701df5971c13dad72d"},"nombre":"Corona","__v":0}
+{"_id":{"$oid":"59f69b781df5971c13dad72e"},"nombre":"protesis total","__v":0}
+{"_id":{"$oid":"59f69b901df5971c13dad72f"},"nombre":"Protesis monomaxilar","__v":0}
+{"_id":{"$oid":"59f69ba11df5971c13dad730"},"nombre":"Endodoncia en molar","__v":0}
+{"_id":{"$oid":"59f69bb21df5971c13dad731"},"nombre":"Cirugia por colgajo","__v":0}
+{"_id":{"$oid":"59f69bbb1df5971c13dad732"},"nombre":"Resina","__v":0}
+{"_id":{"$oid":"59f69bcc1df5971c13dad733"},"nombre":"Muñon Espigo","__v":0}
+{"_id":{"$oid":"59f69bdc1df5971c13dad734"},"nombre":"Endodoncia unirradicular","__v":0}
+{"_id":{"$oid":"59f69be61df5971c13dad735"},"nombre":"Puente fijo","__v":0}
+{"_id":{"$oid":"59f69c041df5971c13dad736"},"nombre":"Puente removible","__v":0}
+{"_id":{"$oid":"59f69c121df5971c13dad737"},"nombre":"Exodoncia por colgajo","__v":0}
+{"_id":{"$oid":"59f69c2e1df5971c13dad738"},"nombre":"Colocacion protesis fija","__v":0}
+{"_id":{"$oid":"59f69c431df5971c13dad739"},"nombre":"Colocacion protesis removible","__v":0}

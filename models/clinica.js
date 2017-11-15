@@ -6,7 +6,7 @@
     nombre: String,
     tratamientos:[{
       id_tratamiento: String,
-      cantidad:String
+      cantidad:Number
     }]
   });
   module.exports= mongoose.model('Clinica',clinicaSchema);
